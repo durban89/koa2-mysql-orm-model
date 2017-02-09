@@ -1,0 +1,12 @@
+{
+	"presets": ["es2015"],
+  "plugins": [
+    'transform-async-to-generator',
+    'transform-strict-mode',
+    'transform-object-assign',
+    'transform-class-properties',
+    'transform-export-extensions',
+    'transform-runtime',
+    'transform-decorators-legacy'
+  ]
+}
