@@ -1,10 +1,12 @@
 'use strict';
 
+console.log(__dirname);
+
 module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './example.db'
+      filename: __dirname + '/example.db'
     }
   },
 
