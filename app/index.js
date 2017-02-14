@@ -22,8 +22,8 @@ const router = new koaRouter();
 
 
 router.get('/', DefaultController.home);
-router.post('/', DefaultController.home);
-app.use(bodyParser()).use(router.routes()).use(koaLogger());
+router.post('/', DefaultController.create);
+app.use(koaLogger()).use(bodyParser()).use(router.routes());
 
 app.listen(8881);
 
