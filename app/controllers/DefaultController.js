@@ -11,7 +11,10 @@ class DefaultController {
       .where('age', '<', ctx.request.query.maxAge)
       .where('firstName', 'like', ctx.request.query.firstName);
 
-    return ctx.body = person;
+    await ctx.render('index', {
+      body: 'Hello World',
+      person: person
+    });
   }
 
   static async create(ctx, next) {

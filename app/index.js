@@ -9,21 +9,42 @@ import Koa from 'koa';
 import koaRouter from 'koa-router';
 import koaLogger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
+import render from 'koa-ejs';
+import co from 'co';
+import koaStatic from "koa2-static"
 import DefaultController from './controllers/DefaultController';
+const path = require('path');
 
 // initial knex
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
+// initial app
 const app = new Koa();
 
 // router
 const router = new koaRouter();
-
-
 router.get('/', DefaultController.home);
 router.post('/', DefaultController.create);
-app.use(koaLogger()).use(bodyParser()).use(router.routes());
+
+// initial render
+render(app, {
+  root: path.join(__dirname + '/view'),
+  layout: 'template',
+  viewExt: 'ejs',
+  cache: true,
+  debug: true
+});
+app.context.render = co.wrap(app.context.render);
+
+// initial static
+
+app.use(koaLogger())
+  .use(bodyParser())
+  .use(router.routes()).use(koaStatic({
+    path:'/web',
+    root:__dirname + "/../static"
+  }));
 
 app.listen(8881);
 
