@@ -4,7 +4,9 @@
   "description": "koa2 orm mysql model",
   "main": "index.js",
   "scripts": {
-    "start": "node app/app.babel.js",
+    "start:dev": "./node_modules/.bin/pm2 start ecosystem.config.dev.js",
+    "start:test": "./node_modules/.bin/pm2 start ecosystem.config.test.js",
+    "start": "./node_modules/.bin/pm2 start ecosystem.config.js",
     "test": "node test.js"
   },
   "keywords": [
