@@ -7,10 +7,10 @@ module.exports = {
 
     // First application
     {
-      name: "koa-mysql-orm-model-production",
+      name: "koa-mysql-orm-model",
       script: "app/app.babel.js",
-      error_file: "log/wap.out",
-      out_file: "log/wap.out",
+      error_file: "log/error.log",
+      out_file: "log/out.log",
       watch: false,
       env: {
         COMMON_VARIABLE: "true"
@@ -19,7 +19,6 @@ module.exports = {
         NODE_ENV: "production",
         NODE_CONFIG_DIR: __dirname + "/app/config",
         NODE_APP_INSTANCE: "",
-
       }
     },
   ],

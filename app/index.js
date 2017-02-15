@@ -5,6 +5,7 @@ import {
   Model
 } from 'objection';
 import knexConfig from './knexfile';
+import config from 'config';
 import Koa from 'koa';
 import koaRouter from 'koa-router';
 import koaLogger from 'koa-logger';

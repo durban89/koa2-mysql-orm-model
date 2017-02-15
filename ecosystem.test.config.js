@@ -4,30 +4,23 @@ module.exports = {
    * http://pm2.keymetrics.io/docs/usage/application-declaration/
    */
   apps : [
-
     // First application
     {
-      name: "koa-mysql-orm-model-dev",
+      name: "koa-mysql-orm-model-test",
       script: "app/app.babel.js",
-      error_file: "log/wap.out",
-      out_file: "log/wap.out",
+      error_file: "log/error.log",
+      out_file: "log/out.log",
       watch: true,
       ignore_watch: ["node_modules", "static"],
       env: {
         COMMON_VARIABLE: "true"
       },
       env_production: {
-        NODE_ENV: "development",
+        NODE_ENV: "test",
         NODE_CONFIG_DIR: __dirname + "/app/config",
         NODE_APP_INSTANCE: "",
       }
     },
-
-    // Second application
-    {
-      name      : "WEB",
-      script    : "web.js"
-    }
   ],
 
   /**
