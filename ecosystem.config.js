@@ -13,13 +13,10 @@ module.exports = {
       out_file: "log/out.log",
       watch: false,
       env: {
-        COMMON_VARIABLE: "true"
-      },
-      env_production: {
         NODE_ENV: "production",
-        NODE_CONFIG_DIR: __dirname + "/app/config",
+        NODE_CONFIG_DIR: __dirname + "/app/config/",
         NODE_APP_INSTANCE: "",
-      }
+      },
     },
   ],
 
