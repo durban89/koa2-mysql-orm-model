@@ -43,8 +43,8 @@ app.context.render = co.wrap(app.context.render);
 app.use(koaLogger())
   .use(bodyParser())
   .use(router.routes()).use(koaStatic({
-    path:'/web',
-    root:__dirname + "/../static"
+    path: '/web',
+    root: __dirname + "/../static"
   }));
 
 app.listen(8881);
