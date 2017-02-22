@@ -4,9 +4,9 @@
   "description": "koa2 orm mysql model",
   "main": "index.js",
   "scripts": {
-    "start:dev": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start:test": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
+    "start:dev": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:test": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
     "test": "node test.js"
   },
   "keywords": [
