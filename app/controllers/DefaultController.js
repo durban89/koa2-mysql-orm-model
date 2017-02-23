@@ -22,6 +22,27 @@ class DefaultController {
 
     return ctx.body = person;
   }
+
+  static async update(ctx, next) {
+    const person = await Person
+      .query()
+      .patch({
+        'lastName': ctx.request.body.lastName
+      })
+      .where('id', '=', ctx.request.body.id);
+
+    await ctx.render('update', {
+      person: person
+    })
+  }
+
+  static async delete(ctx, next) {
+    const person = await Person.query().delete().where('id', '=', ctx.request.body.id);
+
+    await ctx.render('delete', {
+      person: person
+    })
+  }
 }
 
 export default DefaultController;
