@@ -1,0 +1,24 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<ul>
+<% for(var i in person) { %>
+<li>
+  <%= person[i].firstName; %> <%= person[i].lastName; %>
+  <a href='/person/<%= person[i]['id']%>'>详情</a>
+  <a href='/person/update/<%= person[i]['id']%>'>更新</a>
+  <a href='/person/delete/<%= person[i]['id']%>'>删除</a>
+</li>
+<% } %>
+</ul>
+<div id="app">
+  {{ message }}
+</div>
+
+<script>
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message: 'Hello World!'
+    }
+  });
+</script>
