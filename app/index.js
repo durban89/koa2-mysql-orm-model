@@ -7,12 +7,12 @@ import {
 import knexConfig from './knexfile';
 import config from 'config';
 import Koa from 'koa';
-import koaRouter from 'koa-router';
 import koaLogger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import render from 'koa-ejs';
 import co from 'co';
 import koaStatic from "koa2-static"
+import router from './router';
 import DefaultController from './controllers/DefaultController';
 const path = require('path');
 
@@ -22,11 +22,6 @@ Model.knex(knex);
 
 // initial app
 const app = new Koa();
-
-// router
-const router = new koaRouter();
-router.get('/', DefaultController.home);
-router.post('/', DefaultController.create);
 
 // initial render
 render(app, {
@@ -42,7 +37,8 @@ app.context.render = co.wrap(app.context.render);
 
 app.use(koaLogger())
   .use(bodyParser())
-  .use(router.routes()).use(koaStatic({
+  .use(router.routes())
+  .use(koaStatic({
     path: '/web',
     root: __dirname + "/../static"
   }));
