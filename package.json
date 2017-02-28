@@ -7,7 +7,7 @@
     "start:dev": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
     "start:test": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
     "start": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
-    "test": "node test.js"
+    "test": "./node_modules/.bin/mocha --require 'babel-polyfill' --compilers js:babel-register  ./app/test"
   },
   "keywords": [
     "koa2",
@@ -38,10 +38,12 @@
     "koa-logger": "^2.0.1",
     "koa-router": "^7.0.1",
     "koa2-static": "^1.0.1",
+    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
     "objection": "^0.6.2",
     "pm2": "^2.4.0",
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^3.1.8",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {},
   "repository": {
