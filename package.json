@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
     "start:test": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:profile": "NODE_ENV=development NODE_CONFIG_DIR='./app/config' node --prof app/app.babel.js",
     "start": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
     "test": "./node_modules/.bin/mocha --require 'babel-polyfill' --compilers js:babel-register  ./app/test"
   },
