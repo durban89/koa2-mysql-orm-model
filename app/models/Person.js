@@ -46,4 +46,46 @@ export default class Person extends Model {
       }
     }
   }
+
+  static relationMappings = {
+    pets: {
+      relation: Model.HasManyRelation,
+      modelClass: __dirname + '/Animal',
+      join: {
+        from: 'Person.id',
+        to: 'Animal.ownerId'
+      }
+    },
+
+    movies: {
+      relation: Model.ManyToManyRelation,
+      modelClass: __dirname + '/Movie',
+      join: {
+        from: 'Person.id',
+        through: {
+          from: 'Person_Movie.personId',
+          to: 'Person_movie.movieId',
+        },
+        to: 'Movie.id'
+      }
+    },
+
+    children: {
+      relation: Model.HasManyRelation,
+      modelClass: Person,
+      join: {
+        from: 'Person.id',
+        to: 'Person.parentId'
+      }
+    },
+
+    parent: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: Person,
+      join: {
+        from: 'Person.parentId',
+        to: 'Person.id'
+      }
+    }
+  }
 }
