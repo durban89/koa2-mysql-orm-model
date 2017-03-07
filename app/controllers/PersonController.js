@@ -1,4 +1,5 @@
 import Person from '../models/Person';
+import Movie from '../models/Movie';
 
 class PersonController {
   static async index(ctx, next) {
