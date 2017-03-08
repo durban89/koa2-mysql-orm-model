@@ -3,16 +3,16 @@ import Movie from '../../models/Movie';
 
 class PersonController {
 
-  async index (ctx, next){
+  async index(ctx, next) {
     res.send({});
   }
 
-  async create (ctx, next){
+  async create(ctx, next) {
     const person = await Person.query().insert(ctx.request.body);
     res.send(person);
   }
 
-  async detail (ctx, next){
+  async detail(ctx, next) {
     const person = await Person.query().patchAndFetchById(ctx.params.id, ctx.request.body);
     res.send(person)
   }
