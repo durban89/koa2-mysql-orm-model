@@ -6,7 +6,7 @@ export default class Movie extends Model {
   static tableName = 'movie';
 
   static jsonSchema = {
-    tyoe: 'object';
+    type: 'object',
 
     required: ['name'],
 
@@ -15,7 +15,7 @@ export default class Movie extends Model {
         type: 'integer'
       },
       name: {
-        type::'string',
+        type:'string',
         minLength: 1,
         maxLength: 255
       }

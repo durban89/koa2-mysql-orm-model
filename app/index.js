@@ -14,10 +14,6 @@ import co from 'co';
 import koaStatic from "koa2-static"
 import router from './router';
 
-// 配置路径
-global.__controllerPath = __dirname + '/controllers';
-global.__modelPath = __dirname + '/models';
-
 const path = require('path');
 
 // initial knex
