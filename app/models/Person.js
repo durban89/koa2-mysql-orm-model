@@ -1,6 +1,8 @@
 import {
   Model
 } from 'objection';
+import Animal from './Animal';
+import Movie from './Movie';
 
 export default class Person extends Model {
   static tableName = 'person';
@@ -48,23 +50,23 @@ export default class Person extends Model {
   static relationMappings = {
     pets: {
       relation: Model.HasManyRelation,
-      modelClass: __dirname + '/Animal',
+      modelClass: Animal, // __dirname + '/Animal',
       join: {
-        from: 'Person.id',
-        to: 'Animal.ownerId'
+        from: 'person.id',
+        to: 'animal.ownerId'
       }
     },
 
     movies: {
       relation: Model.ManyToManyRelation,
-      modelClass: __dirname + '/Movie',
+      modelClass: Movie, //__dirname + '/Movie',
       join: {
-        from: 'Person.id',
+        from: 'person.id',
         through: {
-          from: 'Person_Movie.personId',
-          to: 'Person_movie.movieId',
+          from: 'person_movie.personId',
+          to: 'person_movie.movieId',
         },
-        to: 'Movie.id'
+        to: 'movie.id'
       }
     },
 
@@ -72,8 +74,8 @@ export default class Person extends Model {
       relation: Model.HasManyRelation,
       modelClass: Person,
       join: {
-        from: 'Person.id',
-        to: 'Person.parentId'
+        from: 'person.id',
+        to: 'person.parentId'
       }
     },
 
@@ -81,8 +83,8 @@ export default class Person extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: Person,
       join: {
-        from: 'Person.parentId',
-        to: 'Person.id'
+        from: 'person.parentId',
+        to: 'person.id'
       }
     }
   }
