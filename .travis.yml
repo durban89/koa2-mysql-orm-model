@@ -1,5 +1,7 @@
 language: node_js
 node_js:
     - "6"
+before_script:
+    - ./node_modules/.bin/knex migrate:latest --knexfile='./app/knexfile.js'
 script:
     - npm run test
