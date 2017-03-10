@@ -11,7 +11,7 @@ module.exports = {
       error_file: "log/error.log",
       out_file: "log/out.log",
       watch: true,
-      ignore_watch: ["node_modules", "static", "log/**/*", "app/**/*.db", "app/test"],
+      ignore_watch: ["./.git/**/*","./**/*.swp","node_modules", "./**/*.log", "static", "log/**/*", "app/**/*.db", "app/test"],
       env: {
         NODE_ENV: "development",
         NODE_CONFIG_DIR: __dirname + "/app/config/",
