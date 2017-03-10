@@ -2,5 +2,4 @@ language: node_js
 node_js:
     - "6"
 script:
-    - NODE_ENV=development NODE_CONFIG_DIR='./app/config' node app/app.babel.js &
     - npm run test

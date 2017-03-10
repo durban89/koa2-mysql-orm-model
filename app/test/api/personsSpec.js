@@ -1,7 +1,8 @@
 const request = require('supertest');
 const should = require('should');
+const index = require('../../index');
 
-let app = request('http://127.0.0.1:8881');
+let app = request(index.listen());
 
 describe('/api/persons', function() {
   let personId;
