@@ -10,5 +10,5 @@ require('babel-register')({
 require('babel-polyfill');
 
 const app = require('./index');
-
+app.listen(8881);
 module.exports = app;
