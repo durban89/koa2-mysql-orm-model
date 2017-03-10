@@ -1,7 +1,8 @@
 const request = require('supertest');
 const should = require('should');
+const index = require('../../index');
 
-let app = request('http://127.0.0.1:8881');
+let app = request(index.listen());
 
 describe('/api/persons', function() {
   let personId;
@@ -83,16 +84,4 @@ describe('/api/persons', function() {
       })
   });
 
-});
-
-describe('GET /person/:id', function() {
-  it('respond with 200', function(done) {
-    app.get('/person/2').expect(200).end(function(err, res) {
-      if (err) {
-        return done(err);
-      }
-
-      done();
-    })
-  });
 });

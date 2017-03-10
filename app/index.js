@@ -43,6 +43,4 @@ app.use(koaLogger())
     root: __dirname + "/../static"
   }));
 
-app.listen(8881);
-
-console.log('Listening 8881');
+module.exports = app;

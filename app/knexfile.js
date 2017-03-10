@@ -10,14 +10,20 @@ module.exports = {
   },
 
   production: {
-    client: 'mysql',
+    /* client: 'mysql', */
+    // connection: {
+    //   database: 'example'
+    // },
+    // pool: {
+    //   min: 2,
+    //   max: 10
+    /* } */
+    client: 'sqlite3',
     connection: {
-      database: 'example'
+      filename: __dirname + '/example.db'
     },
-    pool: {
-      min: 2,
-      max: 10
-    }
+    useNullAsDefault: true
+
   },
 
   test: {
