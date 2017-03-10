@@ -4,10 +4,10 @@
   "description": "koa2 orm mysql model",
   "main": "index.js",
   "scripts": {
-    "start:dev": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start:test": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start:profile": "NODE_ENV=development NODE_CONFIG_DIR='./app/config' node --prof app/app.babel.js",
-    "start": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
+    "start:dev": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:test": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:prof": "NODE_ENV=development NODE_CONFIG_DIR='./app/config' node --prof app/app.babel.js",
+    "start": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
     "test": "./node_modules/.bin/mocha --require 'babel-polyfill' --compilers js:babel-register  ./app/test/**/*.js"
   },
   "keywords": [
