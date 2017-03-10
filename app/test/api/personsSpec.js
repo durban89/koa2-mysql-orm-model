@@ -85,15 +85,3 @@ describe('/api/persons', function() {
   });
 
 });
-
-describe('GET /person/:id', function() {
-  it('respond with 200', function(done) {
-    app.get('/person/2').expect(200).end(function(err, res) {
-      if (err) {
-        return done(err);
-      }
-
-      done();
-    })
-  });
-});
