@@ -57,7 +57,7 @@ class PersonController {
 
   // add children for a person
   async createChildren(ctx, next) {
-    const person = Person
+    const person = await Person
       .query()
       .findById(ctx.params.id);
 
@@ -66,7 +66,7 @@ class PersonController {
     }
 
     const children = await person
-      .$relateQuery('children')
+      .$relatedQuery('children')
       .insert(ctx.request.body);
 
     ctx.body = children;

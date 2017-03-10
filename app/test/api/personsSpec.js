@@ -30,6 +30,26 @@ describe('/api/persons', function() {
       })
   });
 
+  it('POST /api/persons/:id/children - create children for person', function(done) {
+    app.post(`/api/persons/${personId}/children`)
+      .send({
+        'firstName': 'Sage',
+        'lastName': 'Stallone',
+        'age': 12
+      })
+      .expect(200)
+      .expect(function(res) {
+        console.log(res.body);
+      })
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        done();
+      })
+  });
+
   it('GET /api/persons - fetch persons item', function(done) {
     app.get('/api/persons')
       .expect(200)
