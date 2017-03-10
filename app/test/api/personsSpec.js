@@ -39,7 +39,7 @@ describe('/api/persons', function() {
       })
       .expect(200)
       .expect(function(res) {
-        console.log(res.body);
+        (res.body.parentId > 0).should.be.true;
       })
       .end(function(err, res) {
         if (err) {
