@@ -2,13 +2,13 @@
   "name": "koa-mysql-orm-model",
   "version": "1.0.0",
   "description": "koa2 orm mysql model",
-  "main": "index.js",
+  "main": "app/app.babel.js",
   "scripts": {
-    "start:dev": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start:test": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
-    "start:profile": "NODE_ENV=development NODE_CONFIG_DIR='./app/config' node --prof app/app.babel.js",
-    "start": "rm ./log/*.log && ./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
-    "test": "./node_modules/.bin/mocha --require 'babel-polyfill' --compilers js:babel-register  ./app/test"
+    "start:dev": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:test": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.dev.config.js",
+    "start:prof": "NODE_ENV=development NODE_CONFIG_DIR='./app/config' node --prof app/app.babel.js",
+    "start": "./node_modules/.bin/pm2 startOrRestart ./ecosystem.config.js",
+    "test": "NODE_ENV=production NODE_CONFIG_DIR='./app/config/' ./node_modules/.bin/mocha --require 'babel-polyfill' --compilers js:babel-register  ./app/test/**/*.js"
   },
   "keywords": [
     "koa2",
@@ -43,6 +43,7 @@
     "mysql": "^2.13.0",
     "objection": "^0.6.2",
     "pm2": "^2.4.0",
+    "should": "^11.2.1",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0"
   },

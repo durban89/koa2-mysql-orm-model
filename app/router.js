@@ -20,6 +20,11 @@ router.post('/person', PersonController.save);
 
 router.get('/api/persons', apiPersonController.index);
 router.post('/api/persons', apiPersonController.create);
+router.delete('/api/persons/:id', apiPersonController.delete);
 router.get('/api/persons/:id', apiPersonController.detail);
+
+router.post('/api/persons/:id/children', apiPersonController.createChildren);
+
+router.post('/api/persons/:id/pets', apiPersonController.createPets);
 
 export default router;

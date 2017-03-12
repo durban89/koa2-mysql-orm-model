@@ -34,8 +34,8 @@ export default class Animal extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: `${__dirname}/Person`,
       join: {
-        from: 'Animal.ownerId',
-        to: 'Person.id'
+        from: 'animal.ownerId',
+        to: 'person.id'
       }
     }
   }
