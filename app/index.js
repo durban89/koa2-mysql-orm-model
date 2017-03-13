@@ -34,9 +34,11 @@ render(app, {
 app.context.render = co.wrap(app.context.render);
 
 // initial static
+if (process.env.NODE_ENV != 'production') {
+  app.use(koaLogger());
+}
 
-app.use(koaLogger())
-  .use(bodyParser())
+app.use(bodyParser())
   .use(router.routes())
   .use(koaStatic({
     path: '/web',
