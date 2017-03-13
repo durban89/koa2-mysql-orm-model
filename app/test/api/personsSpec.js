@@ -50,6 +50,26 @@ describe('/api/persons', function() {
       })
   });
 
+  it('POST /api/persons/:id/pets create pets for person', function(done) {
+    app.post(`/api/persons/${personId}/pets`)
+      .send({
+        "name": "Coco",
+        "species": "dog"
+      })
+      .expect(200)
+      .expect(function(res) {
+        (res.body.ownerId == personId).should.be.true;
+      })
+      .end(function(err, res) {
+        if (err) {
+          console.log(err.stack);
+          return done(err);
+        }
+
+        done();
+      })
+  })
+
   it('GET /api/persons - fetch persons item', function(done) {
     app.get('/api/persons')
       .expect(200)

@@ -33,7 +33,7 @@ class PersonController {
     const person = await Person
       .query()
       .findById(ctx.params.id);
-    
+
     if (!person) {
       ctx.throw(404);
     }
@@ -70,6 +70,23 @@ class PersonController {
       .insert(ctx.request.body);
 
     ctx.body = children;
+  }
+
+  // add pets for person
+  async createPets(ctx, next) {
+    const person = await Person
+      .query()
+      .findById(ctx.params.id);
+
+    if (!person) {
+      ctx.throw(404);
+    }
+
+    const pets = await person
+      .$relatedQuery('pets')
+      .insert(ctx.request.body);
+
+    ctx.body = pets;
   }
 
 }
