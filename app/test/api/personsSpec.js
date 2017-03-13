@@ -50,7 +50,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('POST /api/persons/:id/pets create pets for person', function(done) {
+  it('POST /api/persons/:id/pets - create pets for person', function(done) {
     app.post(`/api/persons/${personId}/pets`)
       .send({
         "name": "Coco",
@@ -62,7 +62,21 @@ describe('/api/persons', function() {
       })
       .end(function(err, res) {
         if (err) {
-          console.log(err.stack);
+          return done(err);
+        }
+
+        done();
+      })
+  });
+
+  it('GET /api/persons/:id/pets - fetch pets of person', function(done) {
+    app.get(`/api/persons/${personId}/pets`)
+      .expect(200)
+      .expect(function(res) {
+        (res.body.length > 0).should.be.true;
+      })
+      .end(function(err, res) {
+        if (err) {
           return done(err);
         }
 

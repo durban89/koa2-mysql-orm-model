@@ -26,5 +26,6 @@ router.get('/api/persons/:id', apiPersonController.detail);
 router.post('/api/persons/:id/children', apiPersonController.createChildren);
 
 router.post('/api/persons/:id/pets', apiPersonController.createPets);
+router.get('/api/persons/:id/pets', apiPersonController.pets);
 
 export default router;

@@ -89,6 +89,27 @@ class PersonController {
     ctx.body = pets;
   }
 
+  // query pets
+  async pets(ctx, next) {
+    const person = await Person
+      .query()
+      .findById(ctx.params.id);
+
+    if (!person) {
+      ctx.throw(404);
+    }
+
+    const pets = await person
+      .$relatedQuery('pets')
+      .skipUndefined()
+      .where('name', 'like', ctx.request.query.name)
+      .where('species', ctx.request.query.species);
+
+    ctx.body = pets;
+  }
+
+
+
 }
 
 export default PersonController;
