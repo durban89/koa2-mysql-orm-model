@@ -15,7 +15,7 @@ export default class Movie extends Model {
         type: 'integer'
       },
       name: {
-        type:'string',
+        type: 'string',
         minLength: 1,
         maxLength: 255
       }
@@ -29,12 +29,12 @@ export default class Movie extends Model {
       modelClass: `${__dirname}/Person`,
 
       join: {
-        from: 'Movie',
+        from: 'movie.id',
         through: {
-          from: 'Person_Movie.movieId',
-          from: 'Person_Movie.personId'
+          from: 'person_movie.movieId',
+          to: 'person_movie.personId'
         },
-        to: 'Person.id'
+        to: 'person.id'
       }
     }
   }

@@ -1,3 +1,4 @@
+import * as objection from 'objection';
 import Person from '../../models/Person';
 import Movie from '../../models/Movie';
 
@@ -24,7 +25,6 @@ class PersonController {
 
       ctx.body = person;
     } catch (err) {
-      console.log(err.stack);
       throw err;
     }
   }
@@ -108,8 +108,24 @@ class PersonController {
     ctx.body = pets;
   }
 
+  // add movie for person
+  async createMovies(ctx, next) {
+    const movie = await objection.transaction(Person, async function(Person) {
+      const person = await Person
+        .query()
+        .findById(ctx.params.id);
 
+      if (!person) {
+        return this.throw(404);
+      }
 
+      return await person
+        .$relatedQuery('movies')
+        .insert(ctx.request.body);
+    });
+
+    ctx.body = movie;
+  }
 }
 
 export default PersonController;

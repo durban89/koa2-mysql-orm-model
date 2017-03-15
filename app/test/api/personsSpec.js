@@ -6,8 +6,10 @@ let app = request(index.listen());
 
 describe('/api/persons', function() {
   let personId;
+  let childrenId;
+  let movieId;
 
-  it('POST /api/persons - create person success and respond with 200', function(done) {
+  it('POST / - create person success and respond with 200', function(done) {
     app.post('/api/persons')
       .send({
         'firstName': 'Jennifer',
@@ -30,7 +32,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('POST /api/persons/:id/children - create children for person', function(done) {
+  it('POST /:id/children - create children for person', function(done) {
     app.post(`/api/persons/${personId}/children`)
       .send({
         'firstName': 'Sage',
@@ -40,6 +42,7 @@ describe('/api/persons', function() {
       .expect(200)
       .expect(function(res) {
         (res.body.parentId > 0).should.be.true;
+        childrenId = res.body.id;
       })
       .end(function(err, res) {
         if (err) {
@@ -50,7 +53,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('POST /api/persons/:id/pets - create pets for person', function(done) {
+  it('POST /:id/pets - create pets for person', function(done) {
     app.post(`/api/persons/${personId}/pets`)
       .send({
         "name": "Coco",
@@ -69,7 +72,61 @@ describe('/api/persons', function() {
       })
   });
 
-  it('GET /api/persons/:id/pets - fetch pets of person', function(done) {
+  it('POST /:id/movies - create movies for person', function(done) {
+    const movieName = 'Silver Linings Playbook';
+
+    app.post(`/api/persons/${personId}/movies`)
+      .send({
+        name: movieName
+      })
+      .expect(200)
+      .expect(function(res) {
+        (res.body.name == movieName).should.be.true;
+        movieId = res.body.id;
+      })
+      .end(function(err, res) {
+        if (err) {
+          return done(err)
+        }
+
+        done();
+      });
+  });
+
+  it('POST /movies/:id/actors - create actors fro movies', function(done) {
+    app.post(`/api/movies/${movieId}/actors`)
+      .send({
+        id: childrenId
+      })
+      .expect(200)
+      .expect(function(res) {
+        (res.body.id == childrenId).should.be.true;
+      })
+      .end(function(err, res) {
+        if (err) {
+          return done(err)
+        }
+
+        done();
+      })
+  });
+
+  it("GET /movies/:id/actors - get actors of movie", function(done) {
+    app.get(`/api/movies/${movieId}/actors`)
+      .expect(200)
+      .expect(function(res) {
+        (res.body.length > 0).should.be.true;
+      })
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        done();
+      })
+  });
+
+  it('GET /:id/pets - fetch pets of person', function(done) {
     app.get(`/api/persons/${personId}/pets`)
       .expect(200)
       .expect(function(res) {
@@ -84,7 +141,7 @@ describe('/api/persons', function() {
       })
   })
 
-  it('GET /api/persons - fetch persons item', function(done) {
+  it('GET / - fetch persons item', function(done) {
     app.get('/api/persons')
       .expect(200)
       .expect(function(res) {
@@ -99,7 +156,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('GET /api/persons/:id - fetch a person', function(done) {
+  it('GET /:id - fetch a person', function(done) {
     app.get(`/api/persons/${personId}`)
       .expect(200)
       .expect(function(res) {
@@ -114,7 +171,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('DELETE /api/persons/:id - delete a person', function(done) {
+  it('DELETE /:id - delete a person', function(done) {
     app.delete(`/api/persons/${personId}`)
       .expect(200)
       .end(function(err, res) {
@@ -126,7 +183,7 @@ describe('/api/persons', function() {
       })
   });
 
-  it('GET /api/persons/:id - fetch a person should 404', function(done) {
+  it('GET /:id - fetch a person should 404', function(done) {
     app.get(`/api/persons/${personId}`)
       .expect(404)
       .end(function(err, res) {

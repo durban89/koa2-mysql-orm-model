@@ -2,8 +2,10 @@ import koaRouter from 'koa-router';
 import DefaultController from './controllers/DefaultController';
 import PersonController from './controllers/PersonController';
 import ApiPersonController from './controllers/api/PersonController';
+import ApiMovieController from './controllers/api/MovieController';
 
 const apiPersonController = new ApiPersonController();
+const apiMovieController = new ApiMovieController();
 
 const router = new koaRouter();
 
@@ -27,5 +29,9 @@ router.post('/api/persons/:id/children', apiPersonController.createChildren);
 
 router.post('/api/persons/:id/pets', apiPersonController.createPets);
 router.get('/api/persons/:id/pets', apiPersonController.pets);
+
+router.post('/api/persons/:id/movies', apiPersonController.createMovies);
+router.post('/api/movies/:id/actors', apiMovieController.createActors);
+router.get('/api/movies/:id/actors', apiMovieController.actors);
 
 export default router;
