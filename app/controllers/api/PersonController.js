@@ -121,14 +121,15 @@ class PersonController {
       .where('species', ctx.request.query.species);
 
     ctx.body = pets;
+    return ctx.body;
   }
 
   // add movie for person
   async createMovies(ctx, next) {
     const self = this;
 
-    const movie = await objection.transaction(Person, async () => {
-      const person = await Person
+    const movie = await objection.transaction(Person, async (TxPerson) => {
+      const person = await TxPerson
         .query()
         .findById(ctx.params.id);
 
