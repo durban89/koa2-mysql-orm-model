@@ -1,4 +1,4 @@
-import koaRouter from 'koa-router';
+import KoaRouter from 'koa-router';
 import DefaultController from './controllers/DefaultController';
 import PersonController from './controllers/PersonController';
 import ApiPersonController from './controllers/api/PersonController';
@@ -7,7 +7,7 @@ import ApiMovieController from './controllers/api/MovieController';
 const apiPersonController = new ApiPersonController();
 const apiMovieController = new ApiMovieController();
 
-const router = new koaRouter();
+const router = new KoaRouter();
 
 router.get('/', DefaultController.home);
 router.post('/', DefaultController.create);

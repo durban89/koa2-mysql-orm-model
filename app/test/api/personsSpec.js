@@ -28,7 +28,7 @@ describe('/api/persons', () => {
         const resJson = JSON.parse(res.text);
         personId = resJson.id;
 
-        done();
+        return done();
       });
   });
 
@@ -49,7 +49,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -61,14 +61,14 @@ describe('/api/persons', () => {
       })
       .expect(200)
       .expect((res) => {
-        (res.body.ownerId == personId).should.be.true;
+        (res.body.ownerId === personId).should.be.true;
       })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -81,7 +81,7 @@ describe('/api/persons', () => {
       })
       .expect(200)
       .expect((res) => {
-        (res.body.name == movieName).should.be.true;
+        (res.body.name === movieName).should.be.true;
         movieId = res.body.id;
       })
       .end((err, res) => {
@@ -89,7 +89,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -100,14 +100,14 @@ describe('/api/persons', () => {
       })
       .expect(200)
       .expect((res) => {
-        (res.body.id == childrenId).should.be.true;
+        (res.body.id === childrenId).should.be.true;
       })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -122,7 +122,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -137,7 +137,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -152,7 +152,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -160,14 +160,14 @@ describe('/api/persons', () => {
     app.get(`/api/persons/${personId}`)
       .expect(200)
       .expect((res) => {
-        (res.body.id == personId).should.be.true;
+        (res.body.id === personId).should.be.true;
       })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -179,7 +179,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 
@@ -191,7 +191,7 @@ describe('/api/persons', () => {
           return done(err);
         }
 
-        done();
+        return done();
       });
   });
 });

@@ -18,6 +18,7 @@ class MovieController {
       .relate(ctx.request.body.id);
 
     ctx.body = ctx.request.body;
+    return ctx.body;
   }
 
   // Get Movie's actors
@@ -33,6 +34,7 @@ class MovieController {
     const actors = await movie.$relatedQuery('actors');
 
     ctx.body = actors;
+    return ctx.body;
   }
 }
 

@@ -12,6 +12,7 @@
   "globals":
   {
     "window": true,
-    "it": true
+    "it": true,
+    "describe": true
   }
 }

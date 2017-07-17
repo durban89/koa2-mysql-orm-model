@@ -26,7 +26,7 @@ class PersonController {
         .update({
           firstName: ctx.request.body.firstName,
           lastName: ctx.request.body.lastName,
-          age: parseInt(ctx.request.body.age),
+          age: parseInt(ctx.request.body.age, 10),
         })
         .where('id', ctx.request.body.id);
     } else {
@@ -35,7 +35,7 @@ class PersonController {
         .insert({
           firstName: ctx.request.body.firstName,
           lastName: ctx.request.body.lastName,
-          age: parseInt(ctx.request.body.age),
+          age: parseInt(ctx.request.body.age, 10),
         });
     }
 

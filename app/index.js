@@ -1,10 +1,7 @@
-
-
 import Knex from 'knex';
 import {
   Model,
 } from 'objection';
-import knexConfig from './knexfile';
 import config from 'config';
 import Koa from 'koa';
 import koaLogger from 'koa-logger';
@@ -12,6 +9,7 @@ import bodyParser from 'koa-bodyparser';
 import render from 'koa-ejs';
 import co from 'co';
 import koaStatic from 'koa2-static';
+import knexConfig from './knexfile';
 import router from './router';
 
 const path = require('path');
@@ -34,7 +32,7 @@ render(app, {
 app.context.render = co.wrap(app.context.render);
 
 // initial static
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV !== 'production') {
   app.use(koaLogger());
 }
 

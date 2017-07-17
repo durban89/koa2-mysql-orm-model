@@ -5,6 +5,8 @@ import Movie from '../../models/Movie';
 class PersonController {
 
   async index(ctx, next) {
+    const self = this;
+
     const persons = await Person
       .query()
       .allowEager('[pets, children.[pets, movies], movies]')
@@ -18,6 +20,8 @@ class PersonController {
   }
 
   async create(ctx, next) {
+    const self = this;
+
     try {
       const person = await Person
         .query()
@@ -30,6 +34,8 @@ class PersonController {
   }
 
   async detail(ctx, next) {
+    const self = this;
+
     const person = await Person
       .query()
       .findById(ctx.params.id);
@@ -42,6 +48,8 @@ class PersonController {
   }
 
   async update(ctx, next) {
+    const self = this;
+
     const person = await Person
       .query()
       .patchAndFetchById(ctx.params.id, ctx.request.body);
@@ -50,12 +58,16 @@ class PersonController {
 
   // delete a person
   async delete(ctx, next) {
+    const self = this;
+
     await Person.query().delete().where('id', ctx.params.id);
     ctx.body = {};
   }
 
   // add children for a person
   async createChildren(ctx, next) {
+    const self = this;
+
     const person = await Person
       .query()
       .findById(ctx.params.id);
@@ -73,6 +85,8 @@ class PersonController {
 
   // add pets for person
   async createPets(ctx, next) {
+    const self = this;
+
     const person = await Person
       .query()
       .findById(ctx.params.id);
@@ -90,6 +104,8 @@ class PersonController {
 
   // query pets
   async pets(ctx, next) {
+    const self = this;
+
     const person = await Person
       .query()
       .findById(ctx.params.id);
@@ -109,7 +125,9 @@ class PersonController {
 
   // add movie for person
   async createMovies(ctx, next) {
-    const movie = await objection.transaction(Person, async function (Person) {
+    const self = this;
+
+    const movie = await objection.transaction(Person, async () => {
       const person = await Person
         .query()
         .findById(ctx.params.id);
@@ -118,9 +136,10 @@ class PersonController {
         return this.throw(404);
       }
 
-      return await person
+      const res = await person
         .$relatedQuery('movies')
         .insert(ctx.request.body);
+      return res;
     });
 
     ctx.body = movie;

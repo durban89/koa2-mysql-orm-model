@@ -1,5 +1,3 @@
-
-
 import Person from '../models/Person';
 
 class DefaultController {
@@ -20,7 +18,8 @@ class DefaultController {
   static async create(ctx, next) {
     const person = await Person.query().insert(ctx.request.body);
 
-    return ctx.body = person;
+    ctx.body = person;
+    return ctx.body;
   }
 
   static async update(ctx, next) {
