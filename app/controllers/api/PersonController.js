@@ -12,7 +12,7 @@ class PersonController {
       .skipUndefined()
       .where('age', '>=', ctx.request.query.minAge)
       .where('age', '<', ctx.request.query.maxAge)
-      .where('firstName', 'like', ctx.request.query.firstName)
+      .where('firstName', 'like', ctx.request.query.firstName);
 
     ctx.body = persons;
   }
@@ -46,7 +46,6 @@ class PersonController {
       .query()
       .patchAndFetchById(ctx.params.id, ctx.request.body);
     ctx.body = person;
-
   }
 
   // delete a person
@@ -110,7 +109,7 @@ class PersonController {
 
   // add movie for person
   async createMovies(ctx, next) {
-    const movie = await objection.transaction(Person, async function(Person) {
+    const movie = await objection.transaction(Person, async function (Person) {
       const person = await Person
         .query()
         .findById(ctx.params.id);

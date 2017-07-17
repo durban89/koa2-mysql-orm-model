@@ -1,5 +1,5 @@
 import {
-  Model
+  Model,
 } from 'objection';
 import Animal from './Animal';
 import Movie from './Movie';
@@ -12,39 +12,39 @@ export default class Person extends Model {
     required: ['firstName', 'lastName'],
     properties: {
       id: {
-        type: 'integer'
+        type: 'integer',
       },
       parentId: {
-        type: ['integer', 'null']
+        type: ['integer', 'null'],
       },
       firstName: {
         type: 'string',
         minLength: 1,
-        maxLength: 255
+        maxLength: 255,
       },
       lastName: {
         type: 'string',
         minLength: 1,
-        maxLength: 255
+        maxLength: 255,
       },
       age: {
-        type: 'number'
+        type: 'number',
       },
       address: {
         type: 'object',
         properties: {
           street: {
-            type: 'string'
+            type: 'string',
           },
           city: {
-            type: 'string'
+            type: 'string',
           },
           zipCode: {
-            type: 'string'
-          }
-        }
-      }
-    }
+            type: 'string',
+          },
+        },
+      },
+    },
   }
 
   static relationMappings = {
@@ -53,21 +53,21 @@ export default class Person extends Model {
       modelClass: Animal, // __dirname + '/Animal',
       join: {
         from: 'person.id',
-        to: 'animal.ownerId'
-      }
+        to: 'animal.ownerId',
+      },
     },
 
     movies: {
       relation: Model.ManyToManyRelation,
-      modelClass: Movie, //__dirname + '/Movie',
+      modelClass: Movie, // __dirname + '/Movie',
       join: {
         from: 'person.id',
         through: {
           from: 'person_movie.personId',
           to: 'person_movie.movieId',
         },
-        to: 'movie.id'
-      }
+        to: 'movie.id',
+      },
     },
 
     children: {
@@ -75,8 +75,8 @@ export default class Person extends Model {
       modelClass: Person,
       join: {
         from: 'person.id',
-        to: 'person.parentId'
-      }
+        to: 'person.parentId',
+      },
     },
 
     parent: {
@@ -84,8 +84,8 @@ export default class Person extends Model {
       modelClass: Person,
       join: {
         from: 'person.parentId',
-        to: 'person.id'
-      }
-    }
+        to: 'person.id',
+      },
+    },
   }
 }

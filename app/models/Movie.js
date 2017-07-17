@@ -1,5 +1,5 @@
 import {
-  Model
+  Model,
 } from 'objection';
 
 export default class Movie extends Model {
@@ -12,14 +12,14 @@ export default class Movie extends Model {
 
     properties: {
       id: {
-        type: 'integer'
+        type: 'integer',
       },
       name: {
         type: 'string',
         minLength: 1,
-        maxLength: 255
-      }
-    }
+        maxLength: 255,
+      },
+    },
   };
 
   static relationMappings = {
@@ -32,10 +32,10 @@ export default class Movie extends Model {
         from: 'movie.id',
         through: {
           from: 'person_movie.movieId',
-          to: 'person_movie.personId'
+          to: 'person_movie.personId',
         },
-        to: 'person.id'
-      }
-    }
+        to: 'person.id',
+      },
+    },
   }
 }

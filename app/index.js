@@ -1,8 +1,8 @@
-'use strict';
+
 
 import Knex from 'knex';
 import {
-  Model
+  Model,
 } from 'objection';
 import knexConfig from './knexfile';
 import config from 'config';
@@ -11,7 +11,7 @@ import koaLogger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import render from 'koa-ejs';
 import co from 'co';
-import koaStatic from "koa2-static"
+import koaStatic from 'koa2-static';
 import router from './router';
 
 const path = require('path');
@@ -25,11 +25,11 @@ const app = new Koa();
 
 // initial render
 render(app, {
-  root: path.join(__dirname + '/view'),
+  root: path.join(`${__dirname}/view`),
   layout: 'template',
   viewExt: 'ejs',
   cache: true,
-  debug: true
+  debug: true,
 });
 app.context.render = co.wrap(app.context.render);
 
@@ -42,7 +42,7 @@ app.use(bodyParser())
   .use(router.routes())
   .use(koaStatic({
     path: '/web',
-    root: __dirname + "/../static"
+    root: `${__dirname}/../static`,
   }));
 
 module.exports = app;

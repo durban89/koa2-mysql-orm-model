@@ -1,18 +1,18 @@
-'use strict';
 
-exports.up = function(knex, Promise) {
+
+exports.up = function (knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('animal', function(table) {
+    knex.schema.createTable('animal', (table) => {
       table.increments('id').primary();
-      table.integer('ownerId').unsigned().references('id').inTable('person')
+      table.integer('ownerId').unsigned().references('id').inTable('person');
       table.string('name');
-      table.string('species')
-    })
-  ])
+      table.string('species');
+    }),
+  ]);
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return Promise.all([
-    knes.schema.dropTableIfExists('animal')
+    knes.schema.dropTableIfExists('animal'),
   ]);
 };
