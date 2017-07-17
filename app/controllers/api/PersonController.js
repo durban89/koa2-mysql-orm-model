@@ -128,8 +128,8 @@ class PersonController {
   async createMovies(ctx, next) {
     const self = this;
 
-    const movie = await objection.transaction(Person, async (TxPerson) => {
-      const person = await TxPerson
+    const movie = await objection.transaction(Person, async (TrPerson) => {
+      const person = await TrPerson
         .query()
         .findById(ctx.params.id);
 
