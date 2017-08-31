@@ -5,3 +5,5 @@ before_script:
     - ./node_modules/.bin/knex migrate:latest --knexfile='./app/knexfile.js'
 script:
     - npm run test
+after_success:
+    - npm run coveralls
