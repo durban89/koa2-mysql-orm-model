@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "extends": ["airbnb"],
+  "rules":
+  {
+    "no-unused-vars": 0,
+    "no-underscore-dangle": 0
+  },
+  "globals":
+  {
+    "window": true,
+    "it": true,
+    "describe": true
+  }
+}

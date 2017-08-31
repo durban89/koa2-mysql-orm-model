@@ -1,12 +1,10 @@
-'use strict';
-
 module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: __dirname + '/example.db'
+      filename: `${__dirname}/example.db`,
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
 
   production: {
@@ -20,16 +18,16 @@ module.exports = {
     /* } */
     client: 'sqlite3',
     connection: {
-      filename: __dirname + '/example.db'
+      filename: `${__dirname}/example.db`,
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
 
   },
 
   test: {
     client: 'sqlite3',
     connection: {
-      filename: __dirname + '/example.db'
-    }
-  }
-}
+      filename: `${__dirname}/example.db`,
+    },
+  },
+};

@@ -11,7 +11,7 @@ class PersonController {
       .where('firstName', 'like', ctx.request.query.firstName);
 
     await ctx.render('person/index', {
-      person: person
+      person,
     });
   }
 
@@ -26,17 +26,16 @@ class PersonController {
         .update({
           firstName: ctx.request.body.firstName,
           lastName: ctx.request.body.lastName,
-          age: parseInt(ctx.request.body.age)
+          age: parseInt(ctx.request.body.age, 10),
         })
         .where('id', ctx.request.body.id);
-
     } else {
       const person = await Person
         .query()
         .insert({
           firstName: ctx.request.body.firstName,
           lastName: ctx.request.body.lastName,
-          age: parseInt(ctx.request.body.age)
+          age: parseInt(ctx.request.body.age, 10),
         });
     }
 
@@ -47,10 +46,10 @@ class PersonController {
   static async update(ctx, next) {
     const person = await Person
       .query()
-      .findById(ctx.params.id)
+      .findById(ctx.params.id);
 
     await ctx.render('/person/update', {
-      person: person
+      person,
     });
   }
 
@@ -67,10 +66,10 @@ class PersonController {
   static async detail(ctx, next) {
     const person = await Person
       .query()
-      .findById(ctx.params.id)
+      .findById(ctx.params.id);
 
     await ctx.render('person/detail', {
-      person: person
+      person,
     });
   }
 }

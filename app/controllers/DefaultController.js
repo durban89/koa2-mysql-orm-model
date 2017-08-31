@@ -1,5 +1,3 @@
-'use strict';
-
 import Person from '../models/Person';
 
 class DefaultController {
@@ -13,35 +11,36 @@ class DefaultController {
 
     await ctx.render('index', {
       body: 'Hello World',
-      person: person
+      person,
     });
   }
 
   static async create(ctx, next) {
     const person = await Person.query().insert(ctx.request.body);
 
-    return ctx.body = person;
+    ctx.body = person;
+    return ctx.body;
   }
 
   static async update(ctx, next) {
     const person = await Person
       .query()
       .patch({
-        'lastName': ctx.request.body.lastName
+        lastName: ctx.request.body.lastName,
       })
       .where('id', '=', ctx.request.body.id);
 
     await ctx.render('update', {
-      person: person
-    })
+      person,
+    });
   }
 
   static async delete(ctx, next) {
     const person = await Person.query().delete().where('id', '=', ctx.request.body.id);
 
     await ctx.render('delete', {
-      person: person
-    })
+      person,
+    });
   }
 }
 

@@ -1,5 +1,5 @@
 import {
-  Model
+  Model,
 } from 'objection';
 
 export default class Animal extends Model {
@@ -11,22 +11,22 @@ export default class Animal extends Model {
 
     properties: {
       id: {
-        type: 'integer'
+        type: 'integer',
       },
       ownerId: {
-        type: ['integer', 'null']
+        type: ['integer', 'null'],
       },
       name: {
         type: 'string',
         minLength: 1,
-        maxLength: 255
+        maxLength: 255,
       },
       species: {
         type: 'string',
         minLength: 1,
-        maxLength: 255
-      }
-    }
+        maxLength: 255,
+      },
+    },
   };
 
   static relationMappings = {
@@ -35,8 +35,8 @@ export default class Animal extends Model {
       modelClass: `${__dirname}/Person`,
       join: {
         from: 'animal.ownerId',
-        to: 'person.id'
-      }
-    }
+        to: 'person.id',
+      },
+    },
   }
 }
